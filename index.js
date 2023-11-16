@@ -12,10 +12,10 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Pull your server into this file and start it!
 */
-const express = require('express');
+require('dotenv').config()
 
-const server = express();  //module 1 objective 3// //this go in server.js//
+const server = require("./api/server");  //module 1 objective 3// //this go in server.js//
 
-server.get('/',)
+const port=process.env.PORT||9000
 
-server.listen(9000, () => {console.log('API running on port')} )  //- [ ] Bring the port number from the `process.env` variable, falling back to `9000` if `process.env.PORT` is undefined **!!!**//
+server.listen(port, () => {console.log(`Server running on http://localhost:${port}`)} )  //- [ ] Bring the port number from the `process.env` variable, falling back to `9000` if `process.env.PORT` is undefined **!!!**//
