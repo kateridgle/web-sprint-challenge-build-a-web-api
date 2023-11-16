@@ -6,7 +6,7 @@ const projectRoutes=require('./../api/projects/projects-router');
 const server = express();
 
 server.use(express.json())
-server.use('/api/actions', actionRoutes)
+server.use('/api/actions', actionRoutes) //why not connecting??
 server.use('/api/projects',projectRoutes)
 // Configure your server here
 // Build your actions router in /api/actions/actions-router.js
@@ -14,3 +14,4 @@ server.use('/api/projects',projectRoutes)
 // Do NOT `server.listen()` inside this file!
 
 module.exports = server;
+

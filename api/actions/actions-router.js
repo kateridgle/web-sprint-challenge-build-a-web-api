@@ -1,8 +1,10 @@
 // Write your "actions" router here!
 
+//something broken here, refer to project router
+
 const express = require('express')
 const Actions = require('./actions-model')
-const {checkActionParams, checkActionBody} = require('./actions-middlware')
+const {checkActionId, checkActionBody} = require('./actions-middlware')
 const router = express.Router();
 
 router.get('/', (req, res, next)=>{
@@ -13,7 +15,7 @@ router.get('/', (req, res, next)=>{
         .catch(next)
 })
 
-router.get('/:id',checkActionParams, (req, res)=>{
+router.get('/:id',checkActionId, (req, res)=>{
     res.status(200).json(req.action)
 })
 
@@ -32,7 +34,7 @@ router.post('/', checkActionBody, async(req,res,next)=>{
     }
 })
 
-router.put('/:id', checkActionParams, checkActionBody, async (req, res, next)=>{
+router.put('/:id', checkActionId, checkActionBody, async (req, res, next)=>{ //post having issues connecting? comeback later
     try{
         const newBody = req.body;
         if(!newBody.completed){
@@ -54,7 +56,7 @@ router.put('/:id', checkActionParams, checkActionBody, async (req, res, next)=>{
         
 })
 
-router.delete('/:id', checkActionParams, (req, res, next) => {
+router.delete('/:id', checkActionId, (req, res, next) => {
     Actions.remove(req.params.id)
         .then(() => {
             res.status(200).json({ message: 'Action has been deleted' })
